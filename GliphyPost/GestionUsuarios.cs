@@ -21,7 +21,27 @@ namespace GliphyPost
 
         private void GestionUsuarios_Load(object sender, EventArgs e)
         {
+            // Create the ToolTip and associate with the Form container.
+            ToolTip toolTip1 = new ToolTip();
 
+            // Set up the delays for the ToolTip.
+            toolTip1.AutoPopDelay = 5000;
+            //toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            toolTip1.ShowAlways = true;
+
+            // Set up the ToolTip text for the Button and Checkbox.
+            toolTip1.SetToolTip(this.pictureBox2, "Mis publicaciones");
+            toolTip1.SetToolTip(this.pictureBox1, "Nueva publiación");
+            toolTip1.SetToolTip(this.pictureBox3, "Publicados");
+            toolTip1.SetToolTip(this.pictureBox6, "Por publicar");
+            toolTip1.SetToolTip(this.pictureBox5, "Por autorizar");
+            toolTip1.SetToolTip(this.pictureBox4, "Lista de Usuarios");
+            toolTip1.SetToolTip(this.pictureBox7, "Resdes Sociales");
+
+            //llenar
+            llenarGrid();
         }
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
@@ -116,6 +136,44 @@ namespace GliphyPost
         {
             m.cuentas();
             this.Hide();
+        }
+
+        private void llenarGrid()
+        {
+            DataTable tabla = new DataTable();
+            DataRow Renglon;
+
+            // Llenado de datos del DataGridView //
+            tabla.Columns.Add(new DataColumn("Usuario"));
+            tabla.Columns.Add(new DataColumn("Nivel"));
+            tabla.Columns.Add(new DataColumn("Publicaciones"));
+
+            Renglon = tabla.NewRow();
+            Renglon[0] = "Carlos Rosales";
+            Renglon[1] = "1";
+            Renglon[2] = "15";
+            tabla.Rows.Add(Renglon);
+
+            Renglon = tabla.NewRow();
+            Renglon[0] = "Gabriel Garcia";
+            Renglon[1] = "2";
+            Renglon[2] = "12";
+            tabla.Rows.Add(Renglon);
+
+            Renglon = tabla.NewRow();
+            Renglon[0] = "Madeline Vazquéz";
+            Renglon[1] = "3";
+            Renglon[2] = "3";
+            tabla.Rows.Add(Renglon);
+
+            Renglon = tabla.NewRow();
+            Renglon[0] = "Luis Flores";
+            Renglon[1] = "3";
+            Renglon[2] = "8";
+            tabla.Rows.Add(Renglon);
+
+
+            metroGrid1.DataSource = tabla;
         }
     }
 }

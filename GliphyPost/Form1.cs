@@ -34,6 +34,7 @@ namespace GliphyPost
             if (pasa){
                 Publicaciones x = new Publicaciones();
                 x.Show();
+                x.misPublicaciones();
                 this.Hide();
             }
             else

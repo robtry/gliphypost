@@ -118,11 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="notebook-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\notebook-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="user-49" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user-49.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="notebook-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\notebook-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="872784a1-c6e2-4dcd-ad27-806bd6433773" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\872784a1-c6e2-4dcd-ad27-806bd6433773.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="archive-18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\archive-18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="user-20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,7 +142,7 @@
   <data name="file" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\file.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="archive-18" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\archive-18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cf8f9762-7326-4f38-bcc3-8109e5b98c68" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cf8f9762-7326-4f38-bcc3-8109e5b98c68.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

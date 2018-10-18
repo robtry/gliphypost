@@ -27,7 +27,30 @@ namespace GliphyPost
 
         private void Publicaciones_Load(object sender, EventArgs e)
         {
+            //cuando viene de ingresar carga mis publicaciones
 
+            // Create the ToolTip and associate with the Form container.
+            ToolTip toolTip1 = new ToolTip();
+
+            // Set up the delays for the ToolTip.
+            toolTip1.AutoPopDelay = 5000;
+            //toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            toolTip1.ShowAlways = true;
+
+            // Set up the ToolTip text for the Button and Checkbox.
+            toolTip1.SetToolTip(this.pictureBox2, "Mis publicaciones");
+            toolTip1.SetToolTip(this.pictureBox1, "Nueva publiación");
+            toolTip1.SetToolTip(this.pictureBox3, "Publicados");
+            toolTip1.SetToolTip(this.pictureBox6, "Por publicar");
+            toolTip1.SetToolTip(this.pictureBox5, "Por autorizar");
+            toolTip1.SetToolTip(this.pictureBox4, "Lista de Usuarios");
+            toolTip1.SetToolTip(this.pictureBox7, "Resdes Sociales");
+
+            ///Llenar con cuentas
+            metroComboBox2.Items.Add("Facebook");
+            metroComboBox2.Items.Add("Twitter");
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
@@ -140,21 +163,95 @@ namespace GliphyPost
         public void misPublicaciones()
         {
             label3.Text = "Mis Publicaciones";
+            llenarGrid();
+            
+            //estado
+            metroComboBox1.Enabled = true;
+            materialLabel3.Enabled = true;
+            metroComboBox1.SelectedIndex = -1;
+            //cuenta
+            metroComboBox2.SelectedItem = -1;
+            //field
+            materialSingleLineTextField1.Clear();
+
         }
 
         public void publicados()
         {
             label3.Text = "Publicados";
+            llenarGrid();
+            //estado
+            metroComboBox1.Enabled = false;
+            materialLabel3.Enabled = false;
+            metroComboBox1.SelectedIndex = 0;
+            //cuenta
+            metroComboBox2.SelectedItem = -1;
+            //field
+            materialSingleLineTextField1.Clear();
         }
 
         public void porPublicar()
         {
             label3.Text = "Por Publicar";
+            llenarGrid();
+            //estado
+            metroComboBox1.Enabled = false;
+            materialLabel3.Enabled = false;
+            metroComboBox1.SelectedIndex = 1;
+            //cuenta
+            metroComboBox2.SelectedItem = -1;
+            //field
+            materialSingleLineTextField1.Clear();
         }
 
         public void porAutorizar()
         {
             label3.Text = "Por Autorizar";
+            llenarGrid();
+            //estado
+            metroComboBox1.Enabled = false;
+            materialLabel3.Enabled = false;
+            metroComboBox1.SelectedIndex = 2;
+            //cuenta
+            metroComboBox2.SelectedItem = -1;
+            //field
+            materialSingleLineTextField1.Clear();
+
+        }
+
+        private void llenarGrid()
+        {
+            DataTable tabla = new DataTable();
+            DataRow Renglon;
+
+            // Llenado de datos del DataGridView //
+            tabla.Columns.Add(new DataColumn("Autor"));
+            tabla.Columns.Add(new DataColumn("Cuenta"));
+            tabla.Columns.Add(new DataColumn("Fecha"));
+            tabla.Columns.Add(new DataColumn("Contenido"));
+
+            Renglon = tabla.NewRow();
+            Renglon[0] = "Carlos Rosales";
+            Renglon[1] = "Facebook";
+            Renglon[2] = "15-10-18";
+            Renglon[3] = "Se venden las playeras....";
+            tabla.Rows.Add(Renglon);
+
+            Renglon = tabla.NewRow();
+            Renglon[0] = "Gabriel Garcia";
+            Renglon[1] = "Facebook";
+            Renglon[2] = "31-9-18";
+            Renglon[3] = "Visita de Microsoft....";
+            tabla.Rows.Add(Renglon);
+
+            Renglon = tabla.NewRow();
+            Renglon[0] = "Madeline Vazquéz";
+            Renglon[1] = "Twitter";
+            Renglon[2] = "12-10-18";
+            Renglon[3] = "Nueva Vacante ....";
+            tabla.Rows.Add(Renglon);
+
+            metroGrid1.DataSource = tabla;
         }
     }
 }

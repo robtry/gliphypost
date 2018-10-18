@@ -63,6 +63,16 @@ namespace GliphyPost.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _872784a1_c6e2_4dcd_ad27_806bd6433773 {
+            get {
+                object obj = ResourceManager.GetObject("872784a1-c6e2-4dcd-ad27-806bd6433773", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap archive_18 {
             get {
                 object obj = ResourceManager.GetObject("archive-18", resourceCulture);
@@ -76,6 +86,16 @@ namespace GliphyPost.Properties {
         internal static System.Drawing.Bitmap calendar_23 {
             get {
                 object obj = ResourceManager.GetObject("calendar-23", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cf8f9762_7326_4f38_bcc3_8109e5b98c68 {
+            get {
+                object obj = ResourceManager.GetObject("cf8f9762-7326-4f38-bcc3-8109e5b98c68", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

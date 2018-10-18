@@ -21,7 +21,33 @@ namespace GliphyPost
 
         private void NuevaPublicacion_Load(object sender, EventArgs e)
         {
+            // Create the ToolTip and associate with the Form container.
+            ToolTip toolTip1 = new ToolTip();
 
+            // Set up the delays for the ToolTip.
+            toolTip1.AutoPopDelay = 5000;
+            //toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            toolTip1.ShowAlways = true;
+
+            // Set up the ToolTip text for the Button and Checkbox.
+            toolTip1.SetToolTip(this.pictureBox2, "Mis publicaciones");
+            toolTip1.SetToolTip(this.pictureBox1, "Nueva publiación");
+            toolTip1.SetToolTip(this.pictureBox3, "Publicados");
+            toolTip1.SetToolTip(this.pictureBox6, "Por publicar");
+            toolTip1.SetToolTip(this.pictureBox5, "Por autorizar");
+            toolTip1.SetToolTip(this.pictureBox4, "Lista de Usuarios");
+            toolTip1.SetToolTip(this.pictureBox7, "Resdes Sociales");
+
+
+
+            ///Llenar con cuentas
+            metroComboBox1.Items.Add("Facebook");
+            metroComboBox1.Items.Add("Twitter");
+            //desabilitarl el otro
+            materialLabel4.Enabled = false;
+            metroComboBox2.Enabled = false;
         }
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
@@ -116,6 +142,20 @@ namespace GliphyPost
         {
             m.cuentas();
             this.Hide();
+        }
+
+        private void materialCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (materialCheckBox1.Checked)
+            {
+                materialLabel4.Enabled = true;
+                metroComboBox2.Enabled = true;
+            }
+            else
+            {
+                materialLabel4.Enabled = false;
+                metroComboBox2.Enabled = false;
+            }
         }
     }
 }
