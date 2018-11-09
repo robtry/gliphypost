@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,7 +55,10 @@
             this.materialSingleLineTextField2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.metroComboBox2 = new MetroFramework.Controls.MetroComboBox();
-            this.metroTile1 = new MetroFramework.Controls.MetroTile();
+            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -420,22 +424,46 @@
             this.metroComboBox2.TabIndex = 23;
             this.metroComboBox2.UseSelectable = true;
             // 
-            // metroTile1
+            // metroProgressBar1
             // 
-            this.metroTile1.ActiveControl = null;
-            this.metroTile1.Location = new System.Drawing.Point(400, 427);
-            this.metroTile1.Name = "metroTile1";
-            this.metroTile1.Size = new System.Drawing.Size(140, 59);
-            this.metroTile1.TabIndex = 24;
-            this.metroTile1.Text = "Agregar";
-            this.metroTile1.UseSelectable = true;
+            this.metroProgressBar1.Location = new System.Drawing.Point(84, 563);
+            this.metroProgressBar1.Name = "metroProgressBar1";
+            this.metroProgressBar1.Size = new System.Drawing.Size(369, 23);
+            this.metroProgressBar1.Step = 1;
+            this.metroProgressBar1.Style = MetroFramework.MetroColorStyle.Teal;
+            this.metroProgressBar1.TabIndex = 25;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(418, 545);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "label4";
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.Location = new System.Drawing.Point(451, 419);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(124, 42);
+            this.metroButton1.TabIndex = 27;
+            this.metroButton1.Text = "Agregar";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // GestionCuentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 592);
-            this.Controls.Add(this.metroTile1);
+            this.Controls.Add(this.metroButton1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.metroProgressBar1);
             this.Controls.Add(this.metroComboBox2);
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.materialSingleLineTextField2);
@@ -496,6 +524,9 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField2;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MetroFramework.Controls.MetroComboBox metroComboBox2;
-        private MetroFramework.Controls.MetroTile metroTile1;
+        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
+        private System.Windows.Forms.Label label4;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

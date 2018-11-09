@@ -30,22 +30,45 @@ namespace GliphyPost
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
-            Boolean pasa = true;
-            if (pasa){
-                Publicaciones x = new Publicaciones();
-                x.Show();
-                x.misPublicaciones();
-                this.Hide();
-            }
-            else
+            if (is_valid())
             {
-                MetroMessageBox.Show(this, "\n\nUsuario o Contraseña Incorercto\nDEBE FORMAR PARTE DE LA ASOCIASIÓN PARA INGRESAR", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Boolean pasa = true;
+                if (pasa){
+                    Publicaciones x = new Publicaciones();
+                    x.Show();
+                    x.misPublicaciones();
+                    this.Hide();
+                }
+                else
+                {
+                    MetroMessageBox.Show(this, "\n\nUsuario o Contraseña Incorrecto\nDEBE FORMAR PARTE DE LA ASOCIASIÓN PARA INGRESAR", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private bool is_valid()
+        {
+            if(materialSingleLineTextField1.Text == string.Empty)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(materialSingleLineTextField1, "No puede esta vacío");
+                return false;
+            }
+            //else
+            if(materialSingleLineTextField2.Text == string.Empty)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(materialSingleLineTextField2, "Se debe llenar este campo");
+                return false;
+            }
+
+            return true;
+
         }
     }
 }
