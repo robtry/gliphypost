@@ -170,9 +170,11 @@ namespace GliphyPost
             materialLabel3.Enabled = true;
             metroComboBox1.SelectedIndex = -1;
             //cuenta
-            metroComboBox2.SelectedItem = -1;
+            metroComboBox2.SelectedIndex = -1;
             //field
             materialSingleLineTextField1.Clear();
+            //filtro actual
+            materialLabel5.Text = "Filtro actual: Ninguno";
 
         }
 
@@ -185,9 +187,11 @@ namespace GliphyPost
             materialLabel3.Enabled = false;
             metroComboBox1.SelectedIndex = 0;
             //cuenta
-            metroComboBox2.SelectedItem = -1;
+            metroComboBox2.SelectedIndex = -1;
             //field
             materialSingleLineTextField1.Clear();
+            //filtro actual
+            materialLabel5.Text = "Filtro actual: Ninguno";
         }
 
         public void porPublicar()
@@ -199,9 +203,11 @@ namespace GliphyPost
             materialLabel3.Enabled = false;
             metroComboBox1.SelectedIndex = 1;
             //cuenta
-            metroComboBox2.SelectedItem = -1;
+            metroComboBox2.SelectedIndex = -1;
             //field
             materialSingleLineTextField1.Clear();
+            //filtro actual
+            materialLabel5.Text = "Filtro actual: Ninguno";
         }
 
         public void porAutorizar()
@@ -213,9 +219,11 @@ namespace GliphyPost
             materialLabel3.Enabled = false;
             metroComboBox1.SelectedIndex = 2;
             //cuenta
-            metroComboBox2.SelectedItem = -1;
+            metroComboBox2.SelectedIndex = -1;
             //field
             materialSingleLineTextField1.Clear();
+            //filtro actual
+            materialLabel5.Text = "Filtro actual: Ninguno";
 
         }
 
@@ -252,6 +260,31 @@ namespace GliphyPost
             tabla.Rows.Add(Renglon);
 
             metroGrid1.DataSource = tabla;
+        }
+
+        private void metroDateTime1_ValueChanged(object sender, EventArgs e)
+        {
+            materialLabel5.Text = "Filtro actual: Fecha";
+        }
+
+        private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            materialLabel5.Text = "Filtro actual: Estado";
+        }
+
+        private void metroComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            materialLabel5.Text = "Filtro actual: Cuenta";
+        }
+
+        private void metroButton1_Click_1(object sender, EventArgs e)
+        {
+            materialLabel5.Text = "Filtro actual: Contenido";
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            materialLabel5.Text = "Filtro actual: Ninguno";
         }
     }
 }

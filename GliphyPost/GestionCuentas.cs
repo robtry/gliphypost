@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
@@ -150,31 +151,22 @@ namespace GliphyPost
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            metroButton1.Enabled = false;
-            metroProgressBar1.Visible = true;
-            label4.Text = "Validando..";
-            label4.Visible = true;
-            timer1.Start();
-            //selenium();
 
-            metroButton1.Enabled = true;
+            if (is_valid())
+            {
+                errorProvider1.Clear();
+                metroButton1.Enabled = false;
+                metroProgressBar1.Visible = true;
+                label4.Text = "Validando..";
+                label4.Visible = true;
+                //selenium();
+                metroButton1.Enabled = true;
+                //label4.Visible = false;
+                //metroProgressBar1.Visible = false;
+            }
 
         }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if(contador != 100)
-            {
-                contador++;
-                metroProgressBar1.Value++;
-            }
-            else
-            {
-                timer1.Stop();
-                contador = 0;
-            }
-        }
-
+        
         private void selenium()
         {
 
@@ -191,25 +183,58 @@ namespace GliphyPost
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             try
             {
-                driver.FindElement(By.XPath("//*[@id=\"feedx_sprouts_container\"]/div")).Click();
+                driver.FindElement(By.XPath("//*[@id=\"feedx_sprouts_container\"]/div")).Click(); //si no lo encuentra ps no se pudo logguear
+
                 //ya entro
-                new Actions(driver).SendKeys("abc").Perform();
+                //new Actions(driver).SendKeys("abc").Perform(); ====
+
                 //MessageBox.Show("esperado");
                 //System.Threading.Thread.Sleep(5000);
                 //MessageBox.Show("acabo espera");
 
-               driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div/div/div[2]/div/div[2]/div[3]/div[2]/div/div/span/button")).Click();
+                // hace el post ===
+                //driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div/div/div[2]/div/div[2]/div[3]/div[2]/div/div/span/button")).Click();
 
-                MessageBox.Show(driver.Title);
+                MetroMessageBox.Show(this, "\n\nSe agregó la cuenta correctamente", "Cuenta agregada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch(Exception e)
             {
-                MessageBox.Show(e.Message);
+                MetroMessageBox.Show(this, "\n\nNo se puedo acceder", "Error al agregar cuenta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(e.Message);
             }
             finally
             {
                 driver.Quit();
             }
+        }
+
+        private bool is_valid()
+        {
+            if (materialSingleLineTextField1.Text.Trim() == string.Empty)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(materialSingleLineTextField1, "No puede esta vacío");
+                return false;
+            }
+            //else
+            if (materialSingleLineTextField2.Text.Trim() == string.Empty)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(materialSingleLineTextField2, "Se debe llenar este campo");
+                return false;
+            }
+
+            //else
+            if (metroComboBox2.SelectedIndex == -1)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(metroComboBox2, "Se debe seleccionar algo");
+                return false;
+            }
+
+            return true;
+
         }
     }
 }

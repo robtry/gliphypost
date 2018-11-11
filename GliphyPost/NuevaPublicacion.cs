@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -156,6 +157,50 @@ namespace GliphyPost
                 materialLabel4.Enabled = false;
                 metroComboBox2.Enabled = false;
             }
+        }
+
+        private void metroTile1_Click(object sender, EventArgs e)
+        {
+            if (is_valid())
+            {
+                errorProvider1.Clear();
+                MetroMessageBox.Show(this, "\n\nSe agendó la publicación correctamente", "Publicación programada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private bool is_valid()
+        {
+            if (metroComboBox1.SelectedIndex == -1)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(metroComboBox1 , "Debe seleccionar una cuenta");
+                return false;
+            }
+
+            if (metroTextBox1.Text.Trim() == string.Empty)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(metroTextBox1, "No puede esta vacío");
+                return false;
+            }
+
+            DateTime a = new DateTime(metroDateTime1.Value.Year,
+                                      metroDateTime1.Value.Month,
+                                      metroDateTime1.Value.Day,
+                                      Int32.Parse(numericUpDown1.Value.ToString()),
+                                      Int32.Parse(numericUpDown2.Value.ToString()),
+                                      0);
+            if(a.CompareTo(DateTime.Now) == -1)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(metroDateTime1, "No se pueden programar fechas para el pasado");
+                return false;
+            }
+
+            
+            
+            return true;
+
         }
     }
 }

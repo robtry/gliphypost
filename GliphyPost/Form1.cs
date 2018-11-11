@@ -32,6 +32,7 @@ namespace GliphyPost
         {
             if (is_valid())
             {
+                errorProvider1.Clear();
                 Boolean pasa = true;
                 if (pasa){
                     Publicaciones x = new Publicaciones();
@@ -53,14 +54,14 @@ namespace GliphyPost
 
         private bool is_valid()
         {
-            if(materialSingleLineTextField1.Text == string.Empty)
+            if (materialSingleLineTextField1.Text.Trim() == string.Empty)
             {
                 errorProvider1.Clear();
                 errorProvider1.SetError(materialSingleLineTextField1, "No puede esta vacío");
                 return false;
             }
             //else
-            if(materialSingleLineTextField2.Text == string.Empty)
+            if(materialSingleLineTextField2.Text. Trim() == string.Empty)
             {
                 errorProvider1.Clear();
                 errorProvider1.SetError(materialSingleLineTextField2, "Se debe llenar este campo");
