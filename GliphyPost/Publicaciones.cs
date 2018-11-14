@@ -175,6 +175,11 @@ namespace GliphyPost
             materialSingleLineTextField1.Clear();
             //filtro actual
             materialLabel5.Text = "Filtro actual: Ninguno";
+            //botones
+            materialFlatButton8.Visible = false;
+            materialFlatButton9.Visible = false;
+            //publica ahora
+            materialFlatButton10.Visible = false;
 
         }
 
@@ -192,6 +197,11 @@ namespace GliphyPost
             materialSingleLineTextField1.Clear();
             //filtro actual
             materialLabel5.Text = "Filtro actual: Ninguno";
+            //botones
+            materialFlatButton8.Visible = false;
+            materialFlatButton9.Visible = false;
+            //publica ahora
+            materialFlatButton10.Visible = false;
         }
 
         public void porPublicar()
@@ -208,6 +218,11 @@ namespace GliphyPost
             materialSingleLineTextField1.Clear();
             //filtro actual
             materialLabel5.Text = "Filtro actual: Ninguno";
+            //botones
+            materialFlatButton8.Visible = false;
+            materialFlatButton9.Visible = false;
+            //publica ahora
+            materialFlatButton10.Visible = true;
         }
 
         public void porAutorizar()
@@ -224,6 +239,11 @@ namespace GliphyPost
             materialSingleLineTextField1.Clear();
             //filtro actual
             materialLabel5.Text = "Filtro actual: Ninguno";
+            //botones
+            materialFlatButton8.Visible = true;
+            materialFlatButton9.Visible = true;
+            //publica ahora
+            materialFlatButton10.Visible = false;
 
         }
 
@@ -285,6 +305,13 @@ namespace GliphyPost
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             materialLabel5.Text = "Filtro actual: Ninguno";
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Form1 d = new Form1();
+            d.Show();
         }
     }
 }

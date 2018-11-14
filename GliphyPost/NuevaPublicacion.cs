@@ -164,7 +164,7 @@ namespace GliphyPost
             if (is_valid())
             {
                 errorProvider1.Clear();
-                MetroMessageBox.Show(this, "\n\nSe agendó la publicación correctamente", "Publicación programada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MetroMessageBox.Show(this, "\n\nSe agendó la publicación correctamente", "Publicación programada", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
         }
 
@@ -201,6 +201,23 @@ namespace GliphyPost
             
             return true;
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form1 d = new Form1();
+            d.Show();
+            this.Hide();
+        }
+
+        private void NuevaPublicacion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult resultado;
+            resultado = MetroMessageBox.Show(this, "Gliphy Post", "¿Seguro que deseas salir?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (resultado == DialogResult.Yes)
+                System.Environment.Exit(0);
+            else
+                e.Cancel = true;
         }
     }
 }

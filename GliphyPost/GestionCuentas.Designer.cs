@@ -59,6 +59,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -74,7 +76,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(783, 569);
+            this.label1.Location = new System.Drawing.Point(797, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 14);
             this.label1.TabIndex = 7;
@@ -345,7 +347,7 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(317, 223);
+            this.materialLabel1.Location = new System.Drawing.Point(326, 281);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(61, 19);
@@ -356,7 +358,7 @@
             // 
             this.materialSingleLineTextField1.Depth = 0;
             this.materialSingleLineTextField1.Hint = "Para acceder a la cuenta";
-            this.materialSingleLineTextField1.Location = new System.Drawing.Point(415, 223);
+            this.materialSingleLineTextField1.Location = new System.Drawing.Point(424, 281);
             this.materialSingleLineTextField1.MaxLength = 32767;
             this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
@@ -375,7 +377,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(292, 284);
+            this.materialLabel2.Location = new System.Drawing.Point(301, 342);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(86, 19);
@@ -386,7 +388,7 @@
             // 
             this.materialSingleLineTextField2.Depth = 0;
             this.materialSingleLineTextField2.Hint = "Para Acceder a la cuenta";
-            this.materialSingleLineTextField2.Location = new System.Drawing.Point(415, 284);
+            this.materialSingleLineTextField2.Location = new System.Drawing.Point(424, 342);
             this.materialSingleLineTextField2.MaxLength = 32767;
             this.materialSingleLineTextField2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSingleLineTextField2.Name = "materialSingleLineTextField2";
@@ -405,7 +407,7 @@
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(298, 353);
+            this.materialLabel3.Location = new System.Drawing.Point(307, 220);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(80, 19);
@@ -419,7 +421,7 @@
             this.metroComboBox2.Items.AddRange(new object[] {
             "Facebook",
             "Twitter"});
-            this.metroComboBox2.Location = new System.Drawing.Point(415, 348);
+            this.metroComboBox2.Location = new System.Drawing.Point(424, 215);
             this.metroComboBox2.Name = "metroComboBox2";
             this.metroComboBox2.Size = new System.Drawing.Size(291, 29);
             this.metroComboBox2.TabIndex = 23;
@@ -429,7 +431,6 @@
             // 
             this.metroProgressBar1.Location = new System.Drawing.Point(84, 563);
             this.metroProgressBar1.Name = "metroProgressBar1";
-            this.metroProgressBar1.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.metroProgressBar1.Size = new System.Drawing.Size(369, 23);
             this.metroProgressBar1.Step = 1;
             this.metroProgressBar1.Style = MetroFramework.MetroColorStyle.Teal;
@@ -458,11 +459,29 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(862, 572);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(40, 20);
+            this.linkLabel1.TabIndex = 33;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Salir";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 75;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // GestionCuentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 592);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.metroProgressBar1);
@@ -483,6 +502,7 @@
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Redes Sociales";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GestionCuentas_FormClosing);
             this.Load += new System.EventHandler(this.GestionCuentas_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -531,5 +551,7 @@
         private System.Windows.Forms.Label label4;
         private MetroFramework.Controls.MetroButton metroButton1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

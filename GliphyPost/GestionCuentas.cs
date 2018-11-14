@@ -17,14 +17,10 @@ namespace GliphyPost
 {
     public partial class GestionCuentas : MaterialSkin.Controls.MaterialForm
     {
-        Menu m = new Menu();
-        private int contador;
-        private int con2;
+        private Menu m = new Menu();
         public GestionCuentas()
         {
             InitializeComponent();
-            contador = 0;
-            con2 = 0;
         }
 
         private void GestionCuentas_Load(object sender, EventArgs e)
@@ -151,7 +147,6 @@ namespace GliphyPost
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-
             if (is_valid())
             {
                 errorProvider1.Clear();
@@ -160,9 +155,7 @@ namespace GliphyPost
                 label4.Text = "Validando..";
                 label4.Visible = true;
                 //selenium();
-                metroButton1.Enabled = true;
-                //label4.Visible = false;
-                //metroProgressBar1.Visible = false;
+                timer1.Start();
             }
 
         }
@@ -198,7 +191,8 @@ namespace GliphyPost
                 MetroMessageBox.Show(this, "\n\nSe agregó la cuenta correctamente", "Cuenta agregada", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
-            catch(Exception e)
+            //catch(Exception e)
+            catch
             {
                 MetroMessageBox.Show(this, "\n\nNo se puedo acceder", "Error al agregar cuenta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //MessageBox.Show(e.Message);
@@ -211,6 +205,13 @@ namespace GliphyPost
 
         private bool is_valid()
         {
+            if (metroComboBox2.SelectedIndex == -1)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(metroComboBox2, "Se debe seleccionar algo");
+                return false;
+            }
+            //else
             if (materialSingleLineTextField1.Text.Trim() == string.Empty)
             {
                 errorProvider1.Clear();
@@ -225,16 +226,46 @@ namespace GliphyPost
                 return false;
             }
 
-            //else
-            if (metroComboBox2.SelectedIndex == -1)
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(metroComboBox2, "Se debe seleccionar algo");
-                return false;
-            }
 
             return true;
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Form1 d = new Form1();
+            d.Show();
+        }
+
+        private void GestionCuentas_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult resultado;
+            resultado = MetroMessageBox.Show(this, "Gliphy Post", "¿Seguro que deseas salir?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (resultado == DialogResult.Yes)
+                System.Environment.Exit(0);
+            else
+                e.Cancel = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (metroProgressBar1.Value != 100)
+            {
+                metroProgressBar1.Value++;
+            }
+            else
+            {
+                timer1.Stop();
+                MetroMessageBox.Show(this, "Gliphy Post", "Cuenta verificada con éxito", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                metroButton1.Enabled = true;
+                label4.Visible = false;
+                metroProgressBar1.Visible = false;
+                metroProgressBar1.Value = 0;
+                metroComboBox2.SelectedIndex = -1;
+                materialSingleLineTextField1.Clear();
+                materialSingleLineTextField2.Clear();
+            }
         }
     }
 }

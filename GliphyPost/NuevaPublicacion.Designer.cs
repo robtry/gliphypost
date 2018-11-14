@@ -65,6 +65,7 @@
             this.materialFlatButton8 = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -94,7 +95,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(783, 569);
+            this.label1.Location = new System.Drawing.Point(797, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 14);
             this.label1.TabIndex = 9;
@@ -543,11 +544,24 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(862, 572);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(40, 20);
+            this.linkLabel1.TabIndex = 32;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Salir";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // NuevaPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 592);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.materialLabel6);
             this.Controls.Add(this.materialFlatButton8);
@@ -575,6 +589,7 @@
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nueva Publicacion";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NuevaPublicacion_FormClosing);
             this.Load += new System.EventHandler(this.NuevaPublicacion_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -630,5 +645,6 @@
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton8;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

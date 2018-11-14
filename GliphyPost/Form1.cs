@@ -30,22 +30,17 @@ namespace GliphyPost
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
-            if (is_valid())
+            ingresar();
+        }
+
+        private void materialSingleLineTextField2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
             {
-                errorProvider1.Clear();
-                Boolean pasa = true;
-                if (pasa){
-                    Publicaciones x = new Publicaciones();
-                    x.Show();
-                    x.misPublicaciones();
-                    this.Hide();
-                }
-                else
-                {
-                    MetroMessageBox.Show(this, "\n\nUsuario o Contraseña Incorrecto\nDEBE FORMAR PARTE DE LA ASOCIASIÓN PARA INGRESAR", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                ingresar();
             }
         }
+
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
@@ -70,6 +65,31 @@ namespace GliphyPost
 
             return true;
 
+        }
+
+        private void ingresar()
+        {
+            if (is_valid())
+            {
+                errorProvider1.Clear();
+                Boolean pasa = true;
+                if (pasa)
+                {
+                    Publicaciones x = new Publicaciones();
+                    x.Show();
+                    x.misPublicaciones();
+                    this.Hide();
+                }
+                else
+                {
+                    MetroMessageBox.Show(this, "\n\nUsuario o Contraseña Incorrecto\nDEBE FORMAR PARTE DE LA ASOCIASIÓN PARA INGRESAR", "Error de autentificación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

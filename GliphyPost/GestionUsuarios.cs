@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -174,6 +175,23 @@ namespace GliphyPost
 
 
             metroGrid1.DataSource = tabla;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Form1 d = new Form1();
+            d.Show();
+        }
+
+        private void GestionUsuarios_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult resultado;
+            resultado = MetroMessageBox.Show(this, "Gliphy Post", "¿Seguro que deseas salir?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (resultado == DialogResult.Yes)
+                System.Environment.Exit(0);
+            else
+                e.Cancel = true;
         }
     }
 }

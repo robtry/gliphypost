@@ -101,6 +101,7 @@
             this.materialSingleLineTextField2.TabIndex = 3;
             this.materialSingleLineTextField2.TabStop = false;
             this.materialSingleLineTextField2.UseSystemPasswordChar = true;
+            this.materialSingleLineTextField2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.materialSingleLineTextField2_KeyDown);
             // 
             // materialRaisedButton1
             // 
@@ -166,6 +167,7 @@
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iniciar Sesión";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
