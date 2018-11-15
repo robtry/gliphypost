@@ -147,60 +147,7 @@ namespace GliphyPost
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            if (is_valid())
-            {
-                errorProvider1.Clear();
-                metroButton1.Enabled = false;
-                metroProgressBar1.Visible = true;
-                label4.Text = "Validando..";
-                label4.Visible = true;
-                //selenium();
-                timer1.Start();
-            }
-
-        }
-        
-        private void selenium()
-        {
-
-            var o = new FirefoxOptions();
-            //o.AddArgument("-headless");
-            o.SetPreference("dom.webnotifications.enabled", false);
-
-            IWebDriver driver = new FirefoxDriver(o);
-            
-            driver.Url = "https://www.facebook.com";
-            
-            driver.FindElement(By.Id("email")).SendKeys("5513162012");
-            driver.FindElement(By.Id("pass")).SendKeys("wtfwtf" + OpenQA.Selenium.Keys.Enter);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            try
-            {
-                driver.FindElement(By.XPath("//*[@id=\"feedx_sprouts_container\"]/div")).Click(); //si no lo encuentra ps no se pudo logguear
-
-                //ya entro
-                //new Actions(driver).SendKeys("abc").Perform(); ====
-
-                //MessageBox.Show("esperado");
-                //System.Threading.Thread.Sleep(5000);
-                //MessageBox.Show("acabo espera");
-
-                // hace el post ===
-                //driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div/div/div[2]/div/div[2]/div[3]/div[2]/div/div/span/button")).Click();
-
-                MetroMessageBox.Show(this, "\n\nSe agregó la cuenta correctamente", "Cuenta agregada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-            //catch(Exception e)
-            catch
-            {
-                MetroMessageBox.Show(this, "\n\nNo se puedo acceder", "Error al agregar cuenta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //MessageBox.Show(e.Message);
-            }
-            finally
-            {
-                driver.Quit();
-            }
+            agregar();
         }
 
         private bool is_valid()
@@ -223,6 +170,13 @@ namespace GliphyPost
             {
                 errorProvider1.Clear();
                 errorProvider1.SetError(materialSingleLineTextField2, "Se debe llenar este campo");
+                return false;
+            }
+            //else
+            if (materialSingleLineTextField3.Text.Trim() == string.Empty)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(materialSingleLineTextField3, "Se debe llenar este campo");
                 return false;
             }
 
@@ -265,6 +219,28 @@ namespace GliphyPost
                 metroComboBox2.SelectedIndex = -1;
                 materialSingleLineTextField1.Clear();
                 materialSingleLineTextField2.Clear();
+                materialSingleLineTextField3.Clear();
+            }
+        }
+
+        private void materialSingleLineTextField3_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            {
+                agregar();
+            }
+        }
+
+        private void agregar()
+        {
+            if (is_valid())
+            {
+                errorProvider1.Clear();
+                metroButton1.Enabled = false;
+                metroProgressBar1.Visible = true;
+                label4.Text = "Validando..";
+                label4.Visible = true;
+                timer1.Start();
             }
         }
     }

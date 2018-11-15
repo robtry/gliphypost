@@ -1,0 +1,1365 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/14/2018 2:03:28 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ROBERTO"
+  DTS:CreatorName="ROBERTO\rober"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{0DE11035-93C5-4099-A45D-F65A334662BA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3026.27"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="New Package"
+  DTS:VersionGUID="{00C5065B-A099-45EA-9BED-1E8C3DE79383}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{1B2257C0-C17B-4671-8904-3A94E2D47318}"
+      DTS:ObjectName="DestinationConnectionAdoNET">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=ROBERTO;Driver={ODBC Driver 13 for SQL Server};database=GlyphyPost;trusted_connection=Yes;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{37045B69-A891-4F19-89F4-F8FBE5A197B2}"
+      DTS:ObjectName="SourceConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ROBERTO;Initial Catalog=GlyphyPost;Provider=SQLOLEDB;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{7AB6DC3F-A061-44E4-8BA5-A119462500EE}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Destination - Niveles"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Destination - Niveles"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Niveles"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - Niveles.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - Niveles.Inputs[Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - Niveles.Inputs[Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - Niveles.Inputs[Destination Input].ExternalColumns[id]"
+                      lineageId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - Niveles.Inputs[Destination Input].Columns[Permiso]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Permiso"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - Niveles.Inputs[Destination Input].ExternalColumns[Permiso]"
+                      lineageId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].Columns[Permiso]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - Niveles.Inputs[Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - Niveles.Inputs[Destination Input].ExternalColumns[Permiso]"
+                      dataType="wstr"
+                      length="50"
+                      name="Permiso" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - Niveles.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - Niveles.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - Niveles.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - Niveles.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - Niveles.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - Niveles.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Destination 1 - Publicaciones"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Destination 1 - Publicaciones"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Publicaciones"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[id]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].Columns[Autor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Autor"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Autor]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Autor]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].Columns[Cuenta]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Cuenta"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Cuenta]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Cuenta]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].Columns[Fecha]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Fecha"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Fecha]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Fecha]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].Columns[Hora]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="Hora"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Hora]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Hora]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].Columns[Contenido]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Contenido"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Contenido]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Contenido]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].Columns[Estatus]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Estatus"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Estatus]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Estatus]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Autor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Autor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Cuenta]"
+                      dataType="wstr"
+                      length="50"
+                      name="Cuenta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Fecha]"
+                      dataType="wstr"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Hora]"
+                      dataType="wstr"
+                      name="Hora" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Contenido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Contenido" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input].ExternalColumns[Estatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Estatus" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Destination 2 - sysdiagrams"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"sysdiagrams"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[name]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].Columns[principal_id]"
+                      cachedDataType="i4"
+                      cachedName="principal_id"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[principal_id]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[principal_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].Columns[diagram_id]"
+                      cachedDataType="i4"
+                      cachedName="diagram_id"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[diagram_id]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[diagram_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].Columns[version]"
+                      cachedDataType="i4"
+                      cachedName="version"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[version]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[version]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].Columns[definition]"
+                      cachedDataType="image"
+                      cachedName="definition"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[definition]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[definition]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="128"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[principal_id]"
+                      dataType="i4"
+                      name="principal_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[diagram_id]"
+                      dataType="i4"
+                      name="diagram_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[version]"
+                      dataType="i4"
+                      name="version" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input].ExternalColumns[definition]"
+                      dataType="image"
+                      name="definition" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Destination 3 - Usuarios"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Destination 3 - Usuarios"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Usuarios"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionAdoNET]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].Columns[matricula]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="matricula"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].ExternalColumns[matricula]"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[matricula]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].Columns[nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="nombre"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].ExternalColumns[nombre]"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].Columns[nivel]"
+                      cachedDataType="i4"
+                      cachedName="nivel"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].ExternalColumns[nivel]"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[nivel]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].Columns[no_publicaciones]"
+                      cachedDataType="i4"
+                      cachedName="no_publicaciones"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].ExternalColumns[no_publicaciones]"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[no_publicaciones]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].ExternalColumns[matricula]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="matricula" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].ExternalColumns[nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].ExternalColumns[nivel]"
+                      dataType="i4"
+                      name="nivel" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input].ExternalColumns[no_publicaciones]"
+                      dataType="i4"
+                      name="no_publicaciones" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination 3 - Usuarios.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination 3 - Usuarios.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination 3 - Usuarios.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - Niveles"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source - Niveles"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Niveles]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - Niveles.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      lineageId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].Columns[Permiso]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].ExternalColumns[Permiso]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].Columns[Permiso]"
+                      name="Permiso"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output].ExternalColumns[Permiso]"
+                      dataType="wstr"
+                      length="50"
+                      name="Permiso" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Error Output].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Error Output].Columns[Permiso]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Error Output].Columns[Permiso]"
+                      name="Permiso" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source 1 - Publicaciones"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source 1 - Publicaciones"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Publicaciones]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Autor]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Autor]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Autor]"
+                      name="Autor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Cuenta]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Cuenta]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Cuenta]"
+                      name="Cuenta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Fecha]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Fecha]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Fecha]"
+                      name="Fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Hora]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Hora]"
+                      length="16"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Hora]"
+                      name="Hora"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Contenido]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Contenido]"
+                      length="100"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Contenido]"
+                      name="Contenido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Estatus]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Estatus]"
+                      length="20"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].Columns[Estatus]"
+                      name="Estatus"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Autor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Autor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Cuenta]"
+                      dataType="wstr"
+                      length="50"
+                      name="Cuenta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Fecha]"
+                      dataType="wstr"
+                      length="10"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Hora]"
+                      dataType="wstr"
+                      length="16"
+                      name="Hora" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Contenido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Contenido" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output].ExternalColumns[Estatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Estatus" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Autor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Autor]"
+                      name="Autor" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Cuenta]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Cuenta]"
+                      name="Cuenta" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Fecha]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Fecha]"
+                      name="Fecha" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Hora]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Hora]"
+                      name="Hora" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Contenido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Contenido]"
+                      name="Contenido" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Estatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[Estatus]"
+                      name="Estatus" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source 2 - sysdiagrams"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source 2 - sysdiagrams"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[sysdiagrams]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      length="128"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[principal_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[principal_id]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[principal_id]"
+                      name="principal_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[diagram_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[diagram_id]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[diagram_id]"
+                      name="diagram_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[version]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[version]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[version]"
+                      name="version"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[definition]"
+                      dataType="image"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[definition]"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].Columns[definition]"
+                      name="definition"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="128"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[principal_id]"
+                      dataType="i4"
+                      name="principal_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[diagram_id]"
+                      dataType="i4"
+                      name="diagram_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[version]"
+                      dataType="i4"
+                      name="version" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output].ExternalColumns[definition]"
+                      dataType="image"
+                      name="definition" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[name]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[principal_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[principal_id]"
+                      name="principal_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[diagram_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[diagram_id]"
+                      name="diagram_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[version]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[version]"
+                      name="version" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[definition]"
+                      dataType="image"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[definition]"
+                      name="definition" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source 3 - Usuarios"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source 3 - Usuarios"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Usuarios]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source 3 - Usuarios.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[matricula]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].ExternalColumns[matricula]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[matricula]"
+                      name="matricula"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[nivel]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].ExternalColumns[nivel]"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[nivel]"
+                      name="nivel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[no_publicaciones]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].ExternalColumns[no_publicaciones]"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].Columns[no_publicaciones]"
+                      name="no_publicaciones"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].ExternalColumns[matricula]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="matricula" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].ExternalColumns[nivel]"
+                      dataType="i4"
+                      name="nivel" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output].ExternalColumns[no_publicaciones]"
+                      dataType="i4"
+                      name="no_publicaciones" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[matricula]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[matricula]"
+                      name="matricula" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[nivel]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[nivel]"
+                      name="nivel" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[no_publicaciones]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[no_publicaciones]"
+                      name="no_publicaciones" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task 1\Destination - Niveles.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source - Niveles.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output1]"
+              endId="Package\Data Flow Task 1\Destination 1 - Publicaciones.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source 1 - Publicaciones.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output2]"
+              endId="Package\Data Flow Task 1\Destination 2 - sysdiagrams.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source 2 - sysdiagrams.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output3]"
+              endId="Package\Data Flow Task 1\Destination 3 - Usuarios.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task 1\Source 3 - Usuarios.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Preparation SQL Task 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{D7B43322-E943-4C0A-9D42-40440FBE24B6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Preparation SQL Task 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1B2257C0-C17B-4671-8904-3A94E2D47318}"
+          SQLTask:SqlStatementSource="CREATE TABLE &quot;Niveles&quot; (&#xA;&quot;id&quot; int NOT NULL,&#xA;&quot;Permiso&quot; nvarchar(50)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;Publicaciones&quot; (&#xA;&quot;id&quot; int NOT NULL,&#xA;&quot;Autor&quot; varchar(10) NOT NULL,&#xA;&quot;Cuenta&quot; nvarchar(50) NOT NULL,&#xA;&quot;Fecha&quot; nvarchar(0),&#xA;&quot;Hora&quot; nvarchar(0),&#xA;&quot;Contenido&quot; varchar(100),&#xA;&quot;Estatus&quot; varchar(20)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;sysdiagrams&quot; (&#xA;&quot;name&quot; nvarchar(128) NOT NULL,&#xA;&quot;principal_id&quot; int NOT NULL,&#xA;&quot;diagram_id&quot; int NOT NULL,&#xA;&quot;version&quot; int,&#xA;&quot;definition&quot; varbinary(-1)&#xA;)&#xA;GO&#xA;CREATE TABLE &quot;Usuarios&quot; (&#xA;&quot;matricula&quot; varchar(10) NOT NULL,&#xA;&quot;nombre&quot; varchar(50),&#xA;&quot;nivel&quot; int,&#xA;&quot;no_publicaciones&quot; int NOT NULL&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{583E0244-C939-4C1E-88C2-E526D4D00F71\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{583E0244-C939-4C1E-88C2-E526D4D00F71}"
+      DTS:From="Package\Preparation SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{583E0244-C939-4C1E-88C2-E526D4D00F71}"
+      DTS:To="Package\Data Flow Task 1" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

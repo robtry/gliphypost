@@ -1,4 +1,6 @@
 ﻿using MetroFramework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,8 +46,9 @@ namespace GliphyPost
 
 
             ///Llenar con cuentas
-            metroComboBox1.Items.Add("Facebook");
-            metroComboBox1.Items.Add("Twitter");
+            metroComboBox1.Items.Add("Facebook SATI");
+            metroComboBox1.Items.Add("Twitter SATI");
+            metroComboBox1.Items.Add("Facebook Rob");
             //desabilitarl el otro
             materialLabel4.Enabled = false;
             metroComboBox2.Enabled = false;
@@ -164,7 +167,21 @@ namespace GliphyPost
             if (is_valid())
             {
                 errorProvider1.Clear();
+                Publicaciones x = new Publicaciones();
+                x.publicacionesTableAdapter.InsertPost("a01025760",
+                                                        metroComboBox1.Text,
+                                                        metroDateTime1.Value.Year.ToString() + "-" + metroDateTime1.Value.Month.ToString() + "-" + metroDateTime1.Value.Day.ToString(),
+                                                        metroTextBox1.Text,
+                                                        "Por Publicar",
+                                                        new Random().Next(15,100));
                 MetroMessageBox.Show(this, "\n\nSe agendó la publicación correctamente", "Publicación programada", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                metroComboBox1.SelectedIndex = -1;
+                metroComboBox2.SelectedIndex = -1;
+                metroTextBox1.Clear();
+                numericUpDown1.Value = 0;
+                numericUpDown2.Value = 0;
+                metroDateTime1.Value = DateTime.Now;
+
             }
         }
 

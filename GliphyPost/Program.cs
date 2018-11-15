@@ -17,6 +17,7 @@ namespace GliphyPost
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new GestionCuentas());
+            //Application.Run(new GestionUsuarios());
             Application.Run(new Form1());
             //Application.Run(new Publicaciones());
             //Application.Run(new NuevaPublicacion());

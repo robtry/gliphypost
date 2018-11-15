@@ -141,40 +141,8 @@ namespace GliphyPost
 
         private void llenarGrid()
         {
-            DataTable tabla = new DataTable();
-            DataRow Renglon;
-
-            // Llenado de datos del DataGridView //
-            tabla.Columns.Add(new DataColumn("Usuario"));
-            tabla.Columns.Add(new DataColumn("Nivel"));
-            tabla.Columns.Add(new DataColumn("Publicaciones"));
-
-            Renglon = tabla.NewRow();
-            Renglon[0] = "Carlos Rosales";
-            Renglon[1] = "1";
-            Renglon[2] = "15";
-            tabla.Rows.Add(Renglon);
-
-            Renglon = tabla.NewRow();
-            Renglon[0] = "Gabriel Garcia";
-            Renglon[1] = "2";
-            Renglon[2] = "12";
-            tabla.Rows.Add(Renglon);
-
-            Renglon = tabla.NewRow();
-            Renglon[0] = "Madeline Vazquéz";
-            Renglon[1] = "3";
-            Renglon[2] = "3";
-            tabla.Rows.Add(Renglon);
-
-            Renglon = tabla.NewRow();
-            Renglon[0] = "Luis Flores";
-            Renglon[1] = "3";
-            Renglon[2] = "8";
-            tabla.Rows.Add(Renglon);
-
-
-            metroGrid1.DataSource = tabla;
+            // TODO: esta línea de código carga datos en la tabla 'glyphyPostDataSet.Usuarios' Puede moverla o quitarla según sea necesario.
+            this.usuariosTableAdapter.Fill(this.glyphyPostDataSet.Usuarios);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -192,6 +160,52 @@ namespace GliphyPost
                 System.Environment.Exit(0);
             else
                 e.Cancel = true;
+        }
+
+        private void usuariosBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.usuariosBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.glyphyPostDataSet);
+
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.usuariosTableAdapter.FillBy(this.glyphyPostDataSet.Usuarios, materialSingleLineTextField1.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            llenarGrid();
+        }
+
+        private void metroTile1_Click(object sender, EventArgs e)
+        {
+            actualizarANivel(1);
+        }
+
+        private void metroTile2_Click(object sender, EventArgs e)
+        {
+            actualizarANivel(2);
+        }
+
+        private void metroTile3_Click(object sender, EventArgs e)
+        {
+            actualizarANivel(3);
+        }
+
+        private void actualizarANivel(int a)
+        {
+            usuariosTableAdapter.UpdateLevel(a, usuariosDataGridView.SelectedCells[0].Value.ToString());
+            llenarGrid();
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using MaterialSkin;
 using MetroFramework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,8 +52,9 @@ namespace GliphyPost
             toolTip1.SetToolTip(this.pictureBox7, "Resdes Sociales");
 
             ///Llenar con cuentas
-            metroComboBox2.Items.Add("Facebook");
-            metroComboBox2.Items.Add("Twitter");
+            metroComboBox2.Items.Add("Facebook SATI");
+            metroComboBox2.Items.Add("Twitter SATI");
+            metroComboBox2.Items.Add("Facebook Rob");
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
@@ -163,8 +167,7 @@ namespace GliphyPost
         public void misPublicaciones()
         {
             label3.Text = "Mis Publicaciones";
-            llenarGrid();
-            
+
             //estado
             metroComboBox1.Enabled = true;
             materialLabel3.Enabled = true;
@@ -180,13 +183,16 @@ namespace GliphyPost
             materialFlatButton9.Visible = false;
             //publica ahora
             materialFlatButton10.Visible = false;
+            //fecha
+            metroDateTime1.Value = DateTime.Now;
+
+            llenarMISPUBLICACIONES();
 
         }
 
         public void publicados()
         {
             label3.Text = "Publicados";
-            llenarGrid();
             //estado
             metroComboBox1.Enabled = false;
             materialLabel3.Enabled = false;
@@ -202,12 +208,15 @@ namespace GliphyPost
             materialFlatButton9.Visible = false;
             //publica ahora
             materialFlatButton10.Visible = false;
+            //fecha
+            metroDateTime1.Value = DateTime.Now;
+
+            llenarPUBLICADOS();
         }
 
         public void porPublicar()
         {
             label3.Text = "Por Publicar";
-            llenarGrid();
             //estado
             metroComboBox1.Enabled = false;
             materialLabel3.Enabled = false;
@@ -223,12 +232,15 @@ namespace GliphyPost
             materialFlatButton9.Visible = false;
             //publica ahora
             materialFlatButton10.Visible = true;
+            //fecha
+            metroDateTime1.Value = DateTime.Now;
+
+            llenarPORPUBLICAR();
         }
 
         public void porAutorizar()
         {
             label3.Text = "Por Autorizar";
-            llenarGrid();
             //estado
             metroComboBox1.Enabled = false;
             materialLabel3.Enabled = false;
@@ -244,67 +256,184 @@ namespace GliphyPost
             materialFlatButton9.Visible = true;
             //publica ahora
             materialFlatButton10.Visible = false;
+            //fecha
+            metroDateTime1.Value = DateTime.Now;
 
-        }
-
-        private void llenarGrid()
-        {
-            DataTable tabla = new DataTable();
-            DataRow Renglon;
-
-            // Llenado de datos del DataGridView //
-            tabla.Columns.Add(new DataColumn("Autor"));
-            tabla.Columns.Add(new DataColumn("Cuenta"));
-            tabla.Columns.Add(new DataColumn("Fecha"));
-            tabla.Columns.Add(new DataColumn("Contenido"));
-
-            Renglon = tabla.NewRow();
-            Renglon[0] = "Carlos Rosales";
-            Renglon[1] = "Facebook";
-            Renglon[2] = "15-10-18";
-            Renglon[3] = "Se venden las playeras....";
-            tabla.Rows.Add(Renglon);
-
-            Renglon = tabla.NewRow();
-            Renglon[0] = "Gabriel Garcia";
-            Renglon[1] = "Facebook";
-            Renglon[2] = "31-9-18";
-            Renglon[3] = "Visita de Microsoft....";
-            tabla.Rows.Add(Renglon);
-
-            Renglon = tabla.NewRow();
-            Renglon[0] = "Madeline Vazquéz";
-            Renglon[1] = "Twitter";
-            Renglon[2] = "12-10-18";
-            Renglon[3] = "Nueva Vacante ....";
-            tabla.Rows.Add(Renglon);
-
-            metroGrid1.DataSource = tabla;
+            llenarPORAUTORIZAR();
         }
 
         private void metroDateTime1_ValueChanged(object sender, EventArgs e)
         {
             materialLabel5.Text = "Filtro actual: Fecha";
+            if (label3.Text == "Mis Publicaciones")
+            {
+                try
+                {
+                    publicacionesTableAdapter.MeFecha(glyphyPostDataSet.Publicaciones, metroDateTime1.Value.Year + "-" + metroDateTime1.Value.Month + "-" + metroDateTime1.Value.Day);
+
+                }
+                catch
+                {
+                    //
+                }
+            }
+            else if (label3.Text == "Publicados")
+            {
+                try
+                {
+                    publicacionesTableAdapter.EstatusFecha(glyphyPostDataSet.Publicaciones, "Publicada", metroDateTime1.Value.Year + "-" + metroDateTime1.Value.Month + "-" + metroDateTime1.Value.Day);
+
+                }
+                catch
+                {
+                    //
+                }
+            }
+            else
+            {
+                try
+                {
+                    publicacionesTableAdapter.EstatusFecha(glyphyPostDataSet.Publicaciones, label3.Text, metroDateTime1.Value.Year + "-" + metroDateTime1.Value.Month + "-" + metroDateTime1.Value.Day);
+
+                }
+                catch
+                {
+                    //
+                }
+            }
         }
 
         private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             materialLabel5.Text = "Filtro actual: Estado";
+            try
+            {
+                if(metroComboBox1.SelectedIndex == 0)
+                {
+                    publicacionesTableAdapter.MeEstatus(glyphyPostDataSet.Publicaciones, "Publicada");
+                }
+                else
+                { 
+                    publicacionesTableAdapter.MeEstatus(glyphyPostDataSet.Publicaciones, metroComboBox1.SelectedItem.ToString());
+                }
+
+            }
+            catch
+            {
+                //
+            }
         }
 
         private void metroComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             materialLabel5.Text = "Filtro actual: Cuenta";
+            if (label3.Text == "Mis Publicaciones")
+            {
+                try
+                {
+                    publicacionesTableAdapter.MeCuenta(glyphyPostDataSet.Publicaciones, metroComboBox2.SelectedItem.ToString());
+
+                }
+                catch
+                {
+                    //
+                }
+            }
+            else if (label3.Text == "Publicados")
+            {
+                try
+                {
+                    publicacionesTableAdapter.EstatusCuenta(glyphyPostDataSet.Publicaciones, "Publicada", metroComboBox2.SelectedItem.ToString());
+
+                }
+                catch
+                {
+                    //
+                }
+            }
+            else
+            {
+                try
+                {
+                    publicacionesTableAdapter.EstatusCuenta(glyphyPostDataSet.Publicaciones, label3.Text, metroComboBox2.SelectedItem.ToString());
+
+                }
+                catch
+                {
+                    //
+                }
+            }
+
         }
 
         private void metroButton1_Click_1(object sender, EventArgs e)
         {
             materialLabel5.Text = "Filtro actual: Contenido";
+            contenido();
+
+        }
+
+        private void materialSingleLineTextField1_KeyDown(object sender, KeyEventArgs e)
+        {
+            contenido();
+        }
+
+        private void contenido()
+        {
+            if (label3.Text == "Mis Publicaciones")
+            {
+                try
+                {
+                    publicacionesTableAdapter.MeLike(glyphyPostDataSet.Publicaciones, materialSingleLineTextField1.Text);
+
+                }
+                catch
+                {
+                    //
+                }
+            }
+            else if (label3.Text == "Publicados")
+            {
+                try
+                {
+                    publicacionesTableAdapter.EstatusLike(glyphyPostDataSet.Publicaciones, "Publicada", materialSingleLineTextField1.Text);
+
+                }
+                catch
+                {
+                    //
+                }
+            }
+            else
+            {
+                try
+                {
+                    publicacionesTableAdapter.EstatusLike(glyphyPostDataSet.Publicaciones, label3.Text, materialSingleLineTextField1.Text);
+
+                }
+                catch
+                {
+                    //
+                }
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             materialLabel5.Text = "Filtro actual: Ninguno";
+            if(label3.Text == "Mis Publicaciones")
+            {
+                llenarMISPUBLICACIONES();
+            }else if (label3.Text == "Por Autorizar")
+            {
+                llenarPORAUTORIZAR();
+            }else if (label3.Text == "Publicados")
+            {
+                llenarPUBLICADOS();
+            }else if (label3.Text == "Por Publicar")
+            {
+                llenarPORPUBLICAR();
+            }
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -313,5 +442,141 @@ namespace GliphyPost
             Form1 d = new Form1();
             d.Show();
         }
+
+        private void publicacionesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.publicacionesBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.glyphyPostDataSet);
+
+        }
+
+        private void llenarGrid()
+        {
+            // TODO: esta línea de código carga datos en la tabla 'glyphyPostDataSet.Publicaciones' Puede moverla o quitarla según sea necesario.
+            //this.publicacionesTableAdapter.Fill(this.glyphyPostDataSet.Publicaciones);
+        }
+
+        private void llenarMISPUBLICACIONES()
+        {
+            try
+            {
+                this.publicacionesTableAdapter.MinesPosts(this.glyphyPostDataSet.Publicaciones);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void llenarPUBLICADOS()
+        {
+            try
+            {
+                this.publicacionesTableAdapter.Published(this.glyphyPostDataSet.Publicaciones);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void llenarPORPUBLICAR()
+        {
+            try
+            {
+                this.publicacionesTableAdapter.ForPublish(this.glyphyPostDataSet.Publicaciones);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void llenarPORAUTORIZAR()
+        {
+            try
+            {
+                this.publicacionesTableAdapter.ForAuthorize(this.glyphyPostDataSet.Publicaciones);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void materialFlatButton9_Click(object sender, EventArgs e)
+        {
+            publicacionesTableAdapter.UpdateStatus("Por Publicar", Int32.Parse(metroGrid1.SelectedCells[0].Value.ToString()));
+            llenarPORAUTORIZAR();
+        }
+
+        private void materialFlatButton8_Click_1(object sender, EventArgs e)
+        {
+            publicacionesTableAdapter.UpdateStatus("Rechazar", Int32.Parse(metroGrid1.SelectedCells[0].Value.ToString()));
+            llenarPORAUTORIZAR();
+        }
+
+        private void materialFlatButton10_Click(object sender, EventArgs e)
+        {
+            bool sePudo = false;
+            var o = new FirefoxOptions();
+            //o.AddArgument("-headless");
+            o.SetPreference("dom.webnotifications.enabled", false);
+
+            IWebDriver driver = new FirefoxDriver(o);
+
+            driver.Url = "https://www.facebook.com";
+
+            driver.FindElement(By.Id("email")).SendKeys("5513162012");
+            driver.FindElement(By.Id("pass")).SendKeys("wtfwtf" + OpenQA.Selenium.Keys.Enter);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            try
+            {
+                driver.FindElement(By.XPath("//*[@id=\"feedx_sprouts_container\"]/div")).Click(); //si no lo encuentra ps no se pudo logguear
+
+                //ya entro
+                new Actions(driver).SendKeys(metroGrid1.SelectedCells[4].Value.ToString()).Perform();
+
+                //MessageBox.Show("esperado");
+                //MessageBox.Show("acabo espera");
+
+                // hace el post ===
+                driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div[1]/div/div[2]/div[2]/div[1]/div[2]/div/div[3]/div/div/div[2]/div[1]/div/div/div/div[2]/div/div[2]/div[3]/div[2]/div/div/span/button")).Click();
+                System.Threading.Thread.Sleep(5000);
+                sePudo = true;
+            }
+            //catch(Exception e)
+            catch
+            {
+                MetroMessageBox.Show(this, "\n\nNo se pudo publicar", "Error al publicar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                driver.Quit();
+            }
+
+            if (sePudo)
+            {
+                MetroMessageBox.Show(this, "\n\nSe hizo la publicación correctamente", "Post Publicado", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                publicacionesTableAdapter.UpdateStatus("Publicada", Int32.Parse(metroGrid1.SelectedCells[0].Value.ToString()));
+                llenarPORPUBLICAR();
+            }
+ 
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            Details z = new Details();
+            z.materialLabel2.Text = publicacionesTableAdapter.GetNombre(metroGrid1.SelectedCells[1].Value.ToString());
+            z.materialLabel7.Text = metroGrid1.SelectedCells[2].Value.ToString();
+            z.materialLabel3.Text = metroGrid1.SelectedCells[3].Value.ToString();
+            z.metroTextBox1.Text = metroGrid1.SelectedCells[4].Value.ToString();
+            z.materialLabel5.Text = metroGrid1.SelectedCells[5].Value.ToString();
+            z.ShowDialog();
+        }
+
+        
     }
 }

@@ -72,7 +72,7 @@ namespace GliphyPost
             if (is_valid())
             {
                 errorProvider1.Clear();
-                Boolean pasa = true;
+                Boolean pasa = materialSingleLineTextField1.Text == "admin@itesm.mx" && materialSingleLineTextField2.Text == "123456";
                 if (pasa)
                 {
                     Publicaciones x = new Publicaciones();
